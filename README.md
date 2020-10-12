@@ -7,7 +7,7 @@ A SwiftUI Marquee or "scrolling text" efect found in Apple native apps. For when
 ## Usage
 Add this repository as a Swift Package Dependency to your project. You find the option in Xcode unter "File > Swift Packages > Add Package Dependency...". Paste the link to this project in and voila!
 
-```
+```swift
 import SwiftUI
 import MarqueeText
 
