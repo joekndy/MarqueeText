@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct MarqueeText : View {
+public struct MarqueeText : View {
     @State var text = ""
     @State var font: UIFont
     @State var leftFade: CGFloat
@@ -9,7 +9,7 @@ struct MarqueeText : View {
 
     @State private var animate = false
 
-    var body : some View {
+    public var body : some View {
         let stringWidth = text.widthOfString(usingFont: font)
         let stringHeight = text.heightOfString(usingFont: font)
         return ZStack {
