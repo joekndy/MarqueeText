@@ -1,11 +1,11 @@
 import SwiftUI
 
 public struct MarqueeText : View {
-    @State public var text = ""
-    @State public var font: UIFont
-    @State public var leftFade: CGFloat
-    @State public var rightFade: CGFloat
-    @State public var startDelay: Double
+    public var text = ""
+    public var font: UIFont
+    public var leftFade: CGFloat
+    public var rightFade: CGFloat
+    public var startDelay: Double
 
     @State private var animate = false
 
@@ -52,6 +52,13 @@ public struct MarqueeText : View {
                     }).frame(width: geometry.size.width + leftFade).offset(x: leftFade * -1)
             }
         }.frame(height: stringHeight)
+    }
+    public init(text: String, font: UIFont, leftFade: CGFloat, rightFade: CGFloat, startDelay: Double) {
+        self.text = text
+        self.font = font
+        self.leftFade = leftFade
+        self.rightFade = rightFade
+        self.startDelay = startDelay
     }
 }
 
