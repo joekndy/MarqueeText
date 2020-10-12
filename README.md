@@ -1,6 +1,6 @@
 # MarqueeText
 
-A SwiftUI Marquee or "scrolling text" efect found in Apple native apps. For when one line isn't enough, but two is just too much 😉
+A SwiftUI Marquee or "scrolling text" effect found in Apple native apps. For when one line isn't enough, but two is just too much 😉
 
 ![MarqueeText Demo](readme/demo.gif)
 
