@@ -1,11 +1,11 @@
 import SwiftUI
 
 public struct MarqueeText : View {
-    @State var text = ""
-    @State var font: UIFont
-    @State var leftFade: CGFloat
-    @State var rightFade: CGFloat
-    @State var startDelay: Double
+    @State public var text = ""
+    @State public var font: UIFont
+    @State public var leftFade: CGFloat
+    @State public var rightFade: CGFloat
+    @State public var startDelay: Double
 
     @State private var animate = false
 
