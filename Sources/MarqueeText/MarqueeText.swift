@@ -1,6 +1,6 @@
 import SwiftUI
 
-public struct MarqueeText2 : View {
+public struct MarqueeText : View {
     public var text: String
     public var font: UIFont
     public var leftFade: CGFloat
