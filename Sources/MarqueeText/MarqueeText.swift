@@ -6,6 +6,7 @@ public struct MarqueeText : View {
     public var leftFade: CGFloat
     public var rightFade: CGFloat
     public var startDelay: Double
+    public var alignment: Alignment
     
     @State private var animate = false
     
@@ -77,7 +78,7 @@ public struct MarqueeText : View {
                         .onChange(of: self.text, perform: {text in
                             self.animate = geo.size.width < stringWidth
                         })
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: alignment)
                 }
             }
         }
@@ -86,12 +87,13 @@ public struct MarqueeText : View {
 
     }
     
-    public init(text: String, font: UIFont, leftFade: CGFloat, rightFade: CGFloat, startDelay: Double) {
+    public init(text: String, font: UIFont, leftFade: CGFloat, rightFade: CGFloat, startDelay: Double, alignment: Alignment?) {
         self.text = text
         self.font = font
         self.leftFade = leftFade
         self.rightFade = rightFade
         self.startDelay = startDelay
+        self.alignment = alignment != nil ? alignment! : .topLeading
     }
 }
 
