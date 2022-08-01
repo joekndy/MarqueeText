@@ -45,10 +45,8 @@ public struct MarqueeText : View {
                             .offset(x: self.animate ? 0 : stringWidth + stringHeight * 2)
                             .animation(self.animate ? animation : nullAnimation, value: self.animate)
                             .onAppear {
-                                Task.init {
-                                    DispatchQueue.main.async {
-                                        self.animate = geo.size.width < stringWidth
-                                    }
+                                DispatchQueue.main.async {
+                                    self.animate = geo.size.width < stringWidth
                                 }
                             }
                             .fixedSize(horizontal: true, vertical: false)
