@@ -19,6 +19,9 @@ public struct MarqueeText : View {
             .delay(startDelay)
             .repeatForever(autoreverses: false)
         
+        let nullAnimation = Animation
+            .linear(duration: 0)
+        
         return ZStack {
             GeometryReader { geo in
                 if stringWidth > geo.size.width { // don't use self.animate as conditional here
@@ -27,10 +30,9 @@ public struct MarqueeText : View {
                             .lineLimit(1)
                             .font(.init(font))
                             .offset(x: self.animate ? -stringWidth - stringHeight * 2 : 0)
-                            .animation(self.animate ? animation : nil, value: self.animate)
+                            .animation(self.animate ? animation : nullAnimation, value: self.animate)
                             .onAppear {
-                                Task.init {
-                                    try await Task.sleep(nanoseconds: 500_000_000)
+                                DispatchQueue.main.async {
                                     self.animate = geo.size.width < stringWidth
                                 }
                             }
@@ -41,10 +43,9 @@ public struct MarqueeText : View {
                             .lineLimit(1)
                             .font(.init(font))
                             .offset(x: self.animate ? 0 : stringWidth + stringHeight * 2)
-                            .animation(self.animate ? animation : nil, value: self.animate)
+                            .animation(self.animate ? animation : nullAnimation, value: self.animate)
                             .onAppear {
-                                Task.init {
-                                    try await Task.sleep(nanoseconds: 500_000_000)
+                                DispatchQueue.main.async {
                                     self.animate = geo.size.width < stringWidth
                                 }
                             }
