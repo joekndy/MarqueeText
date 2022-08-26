@@ -6,7 +6,7 @@ final class MarqueeTextTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(MarqueeText(font: UIFont.preferredFont(forTextStyle: .subheadline), leftFade: 16, rightFade: 16, startDelay: 3).text, "Hello, World!")
+        XCTAssertEqual(MarqueeText(text: "Hello, World!", font: UIFont.preferredFont(forTextStyle: .subheadline), leftFade: 16, rightFade: 16, startDelay: 3).text, "Hello, World!")
     }
 
     static var allTests = [
