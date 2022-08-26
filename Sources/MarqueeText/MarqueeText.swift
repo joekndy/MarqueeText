@@ -52,7 +52,7 @@ public struct MarqueeText : View {
                             .fixedSize(horizontal: true, vertical: false)
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                     }
-                    .onChange(of: self.text, perform: {text in
+                    .onValueChanged(of: self.text, perform: {text in
                         self.animate = geo.size.width < stringWidth
                     })
                     
@@ -76,7 +76,7 @@ public struct MarqueeText : View {
                 } else {
                     Text(self.text)
                         .font(.init(font))
-                        .onChange(of: self.text, perform: {text in
+                        .onValueChanged(of: self.text, perform: {text in
                             self.animate = geo.size.width < stringWidth
                         })
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: alignment)
