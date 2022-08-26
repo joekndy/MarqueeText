@@ -88,7 +88,7 @@ public struct MarqueeText : View {
 
     }
     
-    public init(text: String, font: UIFont, leftFade: CGFloat, rightFade: CGFloat, startDelay: Double, alignment: Alignment?) {
+    public init(text: String, font: UIFont, leftFade: CGFloat, rightFade: CGFloat, startDelay: Double, alignment: Alignment? = nil) {
         self.text = text
         self.font = font
         self.leftFade = leftFade
