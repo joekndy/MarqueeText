@@ -9,6 +9,7 @@ public struct MarqueeText : View {
     public var alignment: Alignment
     
     @State private var animate = false
+    var isCompact = false
     
     public var body : some View {
         let stringWidth = text.widthOfString(usingFont: font)
@@ -84,6 +85,7 @@ public struct MarqueeText : View {
             }
         }
         .frame(height: stringHeight)
+        .frame(maxWidth: isCompact ? stringWidth : nil)
         .onDisappear { self.animate = false }
 
     }
@@ -95,6 +97,14 @@ public struct MarqueeText : View {
         self.rightFade = rightFade
         self.startDelay = startDelay
         self.alignment = alignment != nil ? alignment! : .topLeading
+    }
+}
+
+extension MarqueeText {
+    public func makeCompact(_ compact: Bool = true) -> Self {
+        var view = self
+        view.isCompact = compact
+        return view
     }
 }
 
