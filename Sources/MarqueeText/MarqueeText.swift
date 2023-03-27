@@ -7,6 +7,7 @@ public struct MarqueeText : View {
     public var rightFade: CGFloat
     public var startDelay: Double
     public var alignment: Alignment
+    public var autoReverses: Bool = false
     
     @State private var animate = false
     var isCompact = false
@@ -18,7 +19,7 @@ public struct MarqueeText : View {
         let animation = Animation
             .linear(duration: Double(stringWidth) / 30)
             .delay(startDelay)
-            .repeatForever(autoreverses: false)
+            .repeatForever(autoreverses: autoReverses)
         
         let nullAnimation = Animation
             .linear(duration: 0)
@@ -90,13 +91,14 @@ public struct MarqueeText : View {
 
     }
     
-    public init(text: String, font: UIFont, leftFade: CGFloat, rightFade: CGFloat, startDelay: Double, alignment: Alignment? = nil) {
+    public init(text: String, font: UIFont, leftFade: CGFloat, rightFade: CGFloat, startDelay: Double, alignment: Alignment? = nil, autoReverses: Bool = false) {
         self.text = text
         self.font = font
         self.leftFade = leftFade
         self.rightFade = rightFade
         self.startDelay = startDelay
         self.alignment = alignment != nil ? alignment! : .topLeading
+        self.autoReverses = autoReversesg
     }
 }
 
