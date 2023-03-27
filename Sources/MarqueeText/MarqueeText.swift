@@ -17,7 +17,7 @@ public struct MarqueeText : View {
         let stringHeight = text.heightOfString(usingFont: font)
         
         let animation = Animation
-            .linear(duration: Double(stringWidth) / 30)
+            .linear(duration: Double(stringWidth) / 60)
             .delay(startDelay)
             .repeatForever(autoreverses: autoReverses)
         
@@ -31,20 +31,7 @@ public struct MarqueeText : View {
                         Text(self.text)
                             .lineLimit(1)
                             .font(.init(font))
-                            .offset(x: self.animate ? -stringWidth - stringHeight * 2 : 0)
-                            .animation(self.animate ? animation : nullAnimation, value: self.animate)
-                            .onAppear {
-                                DispatchQueue.main.async {
-                                    self.animate = geo.size.width < stringWidth
-                                }
-                            }
-                            .fixedSize(horizontal: true, vertical: false)
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                        
-                        Text(self.text)
-                            .lineLimit(1)
-                            .font(.init(font))
-                            .offset(x: self.animate ? 0 : stringWidth + stringHeight * 2)
+                            .offset(x: self.animate ? -(stringWidth - geo.size.width + rightFade * 2.0) : 0)
                             .animation(self.animate ? animation : nullAnimation, value: self.animate)
                             .onAppear {
                                 DispatchQueue.main.async {
