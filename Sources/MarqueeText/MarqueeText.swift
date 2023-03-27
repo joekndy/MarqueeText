@@ -98,7 +98,7 @@ public struct MarqueeText : View {
         self.rightFade = rightFade
         self.startDelay = startDelay
         self.alignment = alignment != nil ? alignment! : .topLeading
-        self.autoReverses = autoReversesg
+        self.autoReverses = autoReverses
     }
 }
 
