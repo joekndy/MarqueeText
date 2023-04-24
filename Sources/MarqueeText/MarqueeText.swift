@@ -7,6 +7,7 @@ public struct MarqueeText : View {
     public var rightFade: CGFloat
     public var startDelay: Double
     public var alignment: Alignment
+    public var autoReverses: Bool = false
     
     @State private var animate = false
     var isCompact = false
@@ -16,9 +17,9 @@ public struct MarqueeText : View {
         let stringHeight = text.heightOfString(usingFont: font)
         
         let animation = Animation
-            .linear(duration: Double(stringWidth) / 30)
+            .linear(duration: Double(stringWidth) / 60)
             .delay(startDelay)
-            .repeatForever(autoreverses: false)
+            .repeatForever(autoreverses: autoReverses)
         
         let nullAnimation = Animation
             .linear(duration: 0)
@@ -30,20 +31,7 @@ public struct MarqueeText : View {
                         Text(self.text)
                             .lineLimit(1)
                             .font(.init(font))
-                            .offset(x: self.animate ? -stringWidth - stringHeight * 2 : 0)
-                            .animation(self.animate ? animation : nullAnimation, value: self.animate)
-                            .onAppear {
-                                DispatchQueue.main.async {
-                                    self.animate = geo.size.width < stringWidth
-                                }
-                            }
-                            .fixedSize(horizontal: true, vertical: false)
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                        
-                        Text(self.text)
-                            .lineLimit(1)
-                            .font(.init(font))
-                            .offset(x: self.animate ? 0 : stringWidth + stringHeight * 2)
+                            .offset(x: self.animate ? -(stringWidth - geo.size.width + rightFade * 2.0) : 0)
                             .animation(self.animate ? animation : nullAnimation, value: self.animate)
                             .onAppear {
                                 DispatchQueue.main.async {
@@ -90,13 +78,14 @@ public struct MarqueeText : View {
 
     }
     
-    public init(text: String, font: UIFont, leftFade: CGFloat, rightFade: CGFloat, startDelay: Double, alignment: Alignment? = nil) {
+    public init(text: String, font: UIFont, leftFade: CGFloat, rightFade: CGFloat, startDelay: Double, alignment: Alignment? = nil, autoReverses: Bool = false) {
         self.text = text
         self.font = font
         self.leftFade = leftFade
         self.rightFade = rightFade
         self.startDelay = startDelay
         self.alignment = alignment != nil ? alignment! : .topLeading
+        self.autoReverses = autoReverses
     }
 }
 
