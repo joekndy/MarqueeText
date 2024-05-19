@@ -7,6 +7,7 @@ public struct MarqueeText : View {
     public var rightFade: CGFloat
     public var startDelay: Double
     public var alignment: Alignment
+    public var duration: Double?
     
     @State private var animate = false
     var isCompact = false
@@ -16,7 +17,7 @@ public struct MarqueeText : View {
         let stringHeight = text.heightOfString(usingFont: font)
         
         let animation = Animation
-            .linear(duration: Double(stringWidth) / 30)
+            .linear(duration: duration ?? Double(stringWidth) / 30)
             .delay(startDelay)
             .repeatForever(autoreverses: false)
         
@@ -90,13 +91,14 @@ public struct MarqueeText : View {
 
     }
     
-    public init(text: String, font: UIFont, leftFade: CGFloat, rightFade: CGFloat, startDelay: Double, alignment: Alignment? = nil) {
+    public init(text: String, font: UIFont, leftFade: CGFloat, rightFade: CGFloat, startDelay: Double, alignment: Alignment? = nil, duration: Double? = nil) {
         self.text = text
         self.font = font
         self.leftFade = leftFade
         self.rightFade = rightFade
         self.startDelay = startDelay
         self.alignment = alignment != nil ? alignment! : .topLeading
+        self.duration = duration
     }
 }
 
