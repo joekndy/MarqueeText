@@ -53,9 +53,9 @@ public struct MarqueeText : View {
                             .fixedSize(horizontal: true, vertical: false)
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                     }
-                    .onValueChanged(of: self.text, perform: {text in
+                    .onChange(of: self.text) { text in
                         self.animate = geo.size.width < stringWidth
-                    })
+                    }
                     
                     .offset(x: leftFade)
                     .mask(
@@ -77,9 +77,9 @@ public struct MarqueeText : View {
                 } else {
                     Text(self.text)
                         .font(.init(font))
-                        .onValueChanged(of: self.text, perform: {text in
-                            self.animate = geo.size.width < stringWidth
-                        })
+                        .onChange(of: self.text) { text in
+                        self.animate = geo.size.width < stringWidth
+                    }
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: alignment)
                 }
             }
